@@ -102,8 +102,10 @@ def featured_image(browser):
 #################################################
 # Mars Weather
 #################################################
-# Mars Weather Twitter Account Web Scraper
+# Mars Weather Twitter Account Web API
 def twitter_weather():
+
+    weather_list=[]
     # Web Scraping din't work for me due to changes in CSS from Twitter page (I always get a null value)
     # Setup Tweepy API Authentication
     auth = tweepy.OAuthHandler('cWTIICR3wkkw2PmKoP7Azwmjx', 'CHp4fcZMM726OiZY7bPCepfFNZ6zyZSxK2C8QHY7YQWp8dOtv0')
@@ -113,9 +115,19 @@ def twitter_weather():
     api = tweepy.API(auth, parser=tweepy.parsers.JSONParser())
 
     target_user = "MarsWxReport"
-    tweet = api.user_timeline(target_user, count =1)
-    mars_weather = ((tweet)[0]['text'])
-    return mars_weather
+    tweet = api.user_timeline(target_user, count =4)
+    
+    for report in tweet:
+        mars_weather = ((report)['text'])
+        if 'sol' and 'InSight' in mars_weather:
+            weather_list.append(mars_weather)
+            mars_weather_link = ((report)['entities']['urls'][0]['url'])
+            weather_list.append(mars_weather_link)
+            break
+        else:
+            pass
+
+    return  weather_list
 
 
 
@@ -138,7 +150,7 @@ def mars_facts():
     # Convert previous data frame to a HTML table string
     # Use a Bootstrap nice table template & remove index 
 
-    return mars_planet_profile_df.to_html(classes=['table table-striped'], index=False)
+    return mars_planet_profile_df.to_html(classes=['table table-striped table-dark'], index=False)
     
 
 
@@ -199,7 +211,8 @@ def scrape_all():
     browser = Browser("chrome", **executable_path)
     news_title, news_paragraph = mars_news(browser)
     img_url = featured_image(browser)
-    mars_weather = twitter_weather()
+    mars_weather = twitter_weather()[0]
+    mars_weather_link = twitter_weather()[1]
     facts = mars_facts()
     hemisphere_image_urls = hemisphere(browser)
     timestamp = dt.datetime.now()
@@ -209,6 +222,7 @@ def scrape_all():
         "news_paragraph": news_paragraph,
         "featured_image": img_url,
         "weather": mars_weather,
+        "weather_link": mars_weather_link,
         "facts": facts,
         "hemispheres": hemisphere_image_urls,
         "last_modified": timestamp
