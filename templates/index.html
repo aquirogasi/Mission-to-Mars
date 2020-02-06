@@ -8,23 +8,25 @@
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 </head> 
-<body class="text-white" style="background-color:#ff471a;">
+<body class="text-white" style="background-image: url('https://images8.alphacoders.com/374/374852.jpg'); background-repeat: no-repeat;  background-attachment: fixed;">
     <div class="container">
         <!-- Jumbotron -->
         <!--IMAGES: https://images5.alphacoders.com/508/508358.jpg / https://vfxblog.com/wp-content/uploads/2016/12/marsattacks1b.jpg / https://i.gifer.com/embedded/download/NRfS.gif -->
+        
         <div class="jumbotron text-right" style="background-image: url(https://mars.nasa.gov/system/content_pages/main_images/374_mars2020-PIA21635.jpg); height: 400px; background-position: center; background-size: cover;">
             <h1 class="display-3"><b>Mission to Mars</b></h1>
             
             <p><style> .btn btn-danger btn-lg {margin-top: -1.5rem;margin-left: 19rem;}</style> <a class="btn btn-danger btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
         </div>
+                    
         <!-- NASA Mars News -->
         <div class="container">
             <div class="row" id="mars-news">
                 <div class="media">
                     <div class="media-body">
                         <h4>Latest Mars News</h4>
-                        <h5 style="color: #330a00">{{mars.news_title}}</h5>
-                        <p style="color: #8B0000">{{mars.news_paragraph}}</p>
+                        <h5 style="color: #FF5733">{{mars.news_title}}</h5>
+                        <p style="color: #fe5a1d"">{{mars.news_paragraph}}</p>
                     </div>
                 </div>
             </div>
@@ -35,17 +37,21 @@
                 <div class="col-lg-8 col-md-8 col-sm-12">
                 <h4>Featured Mars Image</h4>
                     <!-- If Images are False/None/Non-Existent, Then Default to Error Message -->
-                    <img src="{{mars.featured_image | default('static/images/error.png', true) }}" class="img-responsive" style="max-width:100%; max-height: auto;" alt="Mars Featured Image"/>
+                    <img src="{{mars.featured_image | default('static/images/error.png', true) }}" class="img-responsive" style="max-width:100%; max-height: auto; margin-top:1.2rem; margin-right:1.2rem;" alt="Mars Featured Image"/>
                 </div>
                 <!-- Mars Weather -->
+                
                 <div class="col-lg-4 col-md-4 col-sm-12" id="mars-weather">
                     <div class="card" style="max-width: 18rem;">
+                        <a href={{mars.weather_link}} target="_blank">
                         <div class="card-body text-white bg-danger">
                             <img src="https://livelearn.ca/wp-content/uploads/2015/04/manitoba-weather.jpg" width="286" height="110" style="margin-left:-1.2rem; margin-top:-1.1rem;padding-top: 0.4rem;padding-left: 0.6rem;padding-right: 0.6rem;padding-bottom: 0.5rem;">
                             <h4 class="card-title">Current Weather on Mars</h4>
                             <p class="card-text">{{mars.weather}}</p>
                         </div>
+                        </a>
                     </div>
+                
                     <!-- Mars Facts -->
                     <br>
                     <div class="row" id="mars-facts">
@@ -83,6 +89,8 @@
     <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+    
+
 </body>
 </html>
 
