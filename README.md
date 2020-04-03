@@ -1,6 +1,6 @@
 # Web Scraping Homework - Mission to Mars
 
-![mission_to_mars](Images/mission_to_mars.png)
+![mission_to_mars](Images/HomePage.jpg)
 
 
 A full-stack web scraping project to retrieve Mars-related data from various websites, store data in a MongoDB database and populate a web page. Data updates in real-time at the click of a button on the web page. Key tools: Python, Beautiful Soup, Splinter/Selenium, HTML/CSS/Bootstrap.
